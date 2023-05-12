@@ -27,6 +27,9 @@ public class LexerToken extends Token {
             case Identifier:
                 result += String.format(" %s", value);
                 break;
+            case Character:
+                result += String.format(" %s", value);
+                break;
             case String:
                 result += String.format(" %s", value);
                 break;

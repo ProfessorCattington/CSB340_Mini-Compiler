@@ -6,9 +6,12 @@ public class ProgramRunner {
 
     public static void main(String[] args) {
 
-        Lexer l = new Lexer("a = 100;\nprint(num);\n ╔");
+        String errorString = "a = 100;\nprint(num);\n ╔";
+        String integerOperator = "1 - 1;";
+        String stringLiteral = "\"Hello, World\"";
+        String charLiteral = "a = 'a';";
+        Lexer l = new Lexer(errorString);
         String result = l.printTokens();
-
         //stubCode();
 
     }

@@ -18,7 +18,6 @@ public class Lexer {
 
     enum tokenCategory {
         operator,
-        negativeOp,
         symbol,
         keyword,
         identifier,
@@ -129,7 +128,7 @@ public class Lexer {
             //check the lexeme against regex to see if it's string
             Pattern pattern = Pattern.compile("[_a-zA-Z][_a-zA-Z0-9]*");
             Matcher matcher = pattern.matcher(lexeme);
-            if (this.lexeme.length() > 1 && matcher.matches()) {
+            if (matcher.matches()) {
                 return tokenCategory.identifier; // lexeme is an identifier
             }
 
@@ -138,13 +137,6 @@ public class Lexer {
             matcher = pattern.matcher(lexeme);
             if (matcher.matches()) {
                 return tokenCategory.integer; // lexeme is an integer
-            }
-
-            //finally check to see if it's a single character
-            pattern = Pattern.compile("'([^'\\n]|\\\\n|\\\\\\\\)'");
-            matcher = pattern.matcher(lexeme);
-            if (matcher.matches()) {
-                return tokenCategory.character; // lexeme is a character
             }
 
         } else { // the lexeme was not probably not an identifier
@@ -157,8 +149,18 @@ public class Lexer {
             if (isStringLiteral()) {
                 return tokenCategory.string;
             }
+            //check to see if it's a character literal
+            if (ischarLiteral()) {
+                return tokenCategory.character;
+            }
 
-            return categories.get(this.lexeme); // lexeme was whatever we found in the map
+            //lexeme may still be an operator or symbol
+            if (categories.containsKey(this.lexeme)) {
+                return categories.get(this.lexeme);
+            } else {
+                return tokenCategory.error;
+            }
+
         }
 
         return tokenCategory.error;
@@ -195,7 +197,7 @@ public class Lexer {
             addNextChar();
             getNextChar();
         }
-
+        addNextChar();
         getNextChar();
     }
 
@@ -234,10 +236,12 @@ public class Lexer {
 
     LexerToken char_lit() { // handle character literals
 
-        char c = nextChar;
+        //get character from lexeme
+        char c = lexeme.toCharArray()[1];
         int n = (int) c;
 
-        return new LexerToken(LexerToken.TokenType.Integer, "" + n, line, linePos);
+        return new LexerToken(LexerToken.TokenType.Character, "" + n, line, linePos);
+        // return new LexerToken(LexerToken.TokenType.Character, n + " '" + c + "'", line, linePos);
     }
 
     LexerToken string_lit() { // handle string literals
@@ -270,6 +274,22 @@ public class Lexer {
         return false;
     }
 
+    boolean ischarLiteral() {
+
+        if (this.nextChar == '\'') {
+            getNextChar();
+            findStringCommentEnd('\'', false);
+
+            //check to see if it matches the pattern provided via project instructions
+            Pattern pattern = Pattern.compile("'([^'\\n]|\\\\n|\\\\\\\\)'");
+            Matcher matcher = pattern.matcher(lexeme);
+            if (matcher.matches()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     LexerToken identifier_or_integer(tokenCategory tokenCategory) { // handle identifiers and integers
         getNextChar();
         if (tokenCategory == Lexer.tokenCategory.identifier) {
@@ -281,6 +301,26 @@ public class Lexer {
 
     //method for handling operator and keyword lexeme
     LexerToken ops_keywords() {
+
+        //we need to check one character ahead to see if this operator uses two symbols
+        char oneCharAhead = source.charAt(charPosition + 1);
+        String twoChar = lexeme + oneCharAhead;
+
+        if (keywords.containsKey(twoChar)) {
+            getNextChar();
+            addNextChar();
+        }
+
+        //need to check if it was a unary not operator
+        if (lexeme.equals("!") && !Character.isWhitespace(oneCharAhead) && oneCharAhead != '=') {
+            getNextChar();
+            return new LexerToken(LexerToken.TokenType.Op_not, "", line, linePos);
+        }
+        //check if it was a unary minus
+        else if (lexeme.equals("-") && !Character.isWhitespace(oneCharAhead)) {
+            getNextChar();
+            return new LexerToken(LexerToken.TokenType.Op_negate, "", line, linePos);
+        }
 
         buildLexeme();
         LexerToken.TokenType type = keywords.get(lexeme);
@@ -314,7 +354,7 @@ public class Lexer {
 
     static void outputToFile(String result) {
         try {
-            FileWriter myWriter = new FileWriter("src/main/resources/hello.lex");
+            FileWriter myWriter = new FileWriter("main\\resources\\hello.lex");
             myWriter.write(result);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -390,6 +430,7 @@ public class Lexer {
         categories.put("putc", tokenCategory.keyword);
 
         categories.put("\"", tokenCategory.string);
+        categories.put("\'", tokenCategory.character);
 
         categories.put("\u0000", tokenCategory.eof);
     }
