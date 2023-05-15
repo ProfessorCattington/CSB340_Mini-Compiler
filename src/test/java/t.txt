@@ -1,0 +1,3 @@
+This file is just here so that the test and java folder will get pushed to github.
+
+Delete file after we add our tests in the folder
