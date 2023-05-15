@@ -18,7 +18,6 @@ public class Lexer {
 
     enum tokenCategory {
         operator,
-        negativeOp,
         symbol,
         keyword,
         identifier,
@@ -28,15 +27,6 @@ public class Lexer {
         comment,
         error,
         eof,
-    }
-
-    static void error(int line, int pos, String msg) {
-        if (line > 0 && pos > 0) {
-            System.out.printf("Invalid token: %s, found at line %d, linePos %d\n", msg, line, pos);
-        } else {
-            System.out.println(msg);
-        }
-        System.exit(1);
     }
 
     Lexer(String input) {
@@ -52,23 +42,30 @@ public class Lexer {
         buildCategoryMap();
     }
 
+    /*
+    Primary method for this class. Restarts the line position counter and clears the lexeme string
+    Checks for EOF and whitespace then categorizes the lexeme it finds into symbols, identifiers, etc
+     */
     LexerToken getToken() {
 
         //reset the lexeme field so we can start over
         this.linePos += lexeme.length();
         this.lexeme = "";
 
-        //handle new line character. has to be done separately because it also counts as whitespace apparently
-        if (this.nextChar == '\n') {
-            line++;
-            this.linePos = 1;
-            getNextChar();
-        }
-
         //get to the next lexeme and increment our positioning value for output
-        while (Character.isWhitespace(this.nextChar) && this.nextChar != '\n') {
-            this.linePos++;
-            getNextChar();
+        while (Character.isWhitespace(this.nextChar)) {
+            if (this.nextChar == '\n') {
+                this.line++;
+                this.linePos = 1;
+                getNextChar();
+                if (atEndOfFile()) {
+
+                    break;
+                }
+            } else {
+                this.linePos++;
+                getNextChar();
+            }
         }
 
         //analyze the character to see what category it could b and build the lexeme
@@ -102,6 +99,7 @@ public class Lexer {
             default:
                 return identifier_or_integer(tokenCategory);
         }
+
     }
 
     //method for looking at the next non whitespace or new line character and finding its category
@@ -109,7 +107,7 @@ public class Lexer {
 
         //check to see if this is the end of the file so we can end early
         if (atEndOfFile()) {
-            this.linePos = this.charPosition;
+            this.linePos = 1;
             return categories.get("\u0000");
         }
 
@@ -127,24 +125,17 @@ public class Lexer {
             }
 
             //check the lexeme against regex to see if it's string
-            Pattern pattern = Pattern.compile("[_a-zA-Z][_a-zA-Z0-9]*");
+            Pattern pattern = Pattern.compile("[_a-zA-Z][_a-zA-Z0-9]*"); //pattern provided via instruction
             Matcher matcher = pattern.matcher(lexeme);
-            if (this.lexeme.length() > 1 && matcher.matches()) {
+            if (matcher.matches()) {
                 return tokenCategory.identifier; // lexeme is an identifier
             }
 
             //check again to see if it's an integer
-            pattern = Pattern.compile("[0-9]+");
+            pattern = Pattern.compile("[0-9]+"); //pattern provided via instruction
             matcher = pattern.matcher(lexeme);
             if (matcher.matches()) {
                 return tokenCategory.integer; // lexeme is an integer
-            }
-
-            //finally check to see if it's a single character
-            pattern = Pattern.compile("'([^'\\n]|\\\\n|\\\\\\\\)'");
-            matcher = pattern.matcher(lexeme);
-            if (matcher.matches()) {
-                return tokenCategory.character; // lexeme is a character
             }
 
         } else { // the lexeme was not probably not an identifier
@@ -157,21 +148,33 @@ public class Lexer {
             if (isStringLiteral()) {
                 return tokenCategory.string;
             }
+            //check to see if it's a character literal
+            if (ischarLiteral()) {
+                return tokenCategory.character;
+            }
 
-            return categories.get(this.lexeme); // lexeme was whatever we found in the map
+            //lexeme may still be an operator or symbol
+            if (categories.containsKey(this.lexeme)) {
+                return categories.get(this.lexeme);
+            } else {
+                return tokenCategory.error;
+            }
+
         }
 
         return tokenCategory.error;
     }
 
-    //method for adding characters from string into lexeme
+    // method for adding characters from string into lexeme
     void buildLexeme() {
 
+        //check to see if we are at the end of the source string. If so set our lexeme to the EOF character
         if (atEndOfFile()) {
             lexeme = "\u0000";
             this.linePos = this.charPosition;
             return;
         }
+        // reach ahead into the source string until we hit whitespace or a symbol
         while (!nextIsWhiteSpace() && !nextIsASymbol()) {
 
             getNextChar();
@@ -183,7 +186,10 @@ public class Lexer {
         }
     }
 
-    //method for finding the end of a comment or string
+    /*
+        Helper method for finding the end of a string, character or comment.
+        I realized after creating this that it was what the 'follow' method was for in the original code
+    */
     void findStringCommentEnd(char endChar, boolean tallyNewLine) {
 
         while (this.nextChar != endChar) {
@@ -195,16 +201,16 @@ public class Lexer {
             addNextChar();
             getNextChar();
         }
-
+        addNextChar();
         getNextChar();
     }
 
-    //look ahead 1 character and see if it's whitespace
+    //Method for looking ahead by 1 space to see if it's the end of the file
     boolean nextIsWhiteSpace() {
         return Character.isWhitespace(this.source.charAt(this.charPosition + 1));
     }
 
-    //look 1 character ahead for parenthesis and stuff
+    //Method for peeking ahead by 1 character to check for parenthesis and other symbols
     boolean nextIsASymbol() {
 
         String nextCharacter = "" + this.source.charAt(this.charPosition + 1);
@@ -213,7 +219,12 @@ public class Lexer {
         return isSymbol;
     }
 
-    //method for setting next character from the source string
+    /*
+    Method for setting next character from the source string. I tried using the updated method provided
+    through canvas but had trouble making it work with the same logic and flow I had already begun using.
+    I ended up breaking the method into 3 parts: checking for end of file, getting the next character
+    and adding the next character.
+     */
     void getNextChar() {
         if (!atEndOfFile()) {
             this.charPosition++;
@@ -221,7 +232,11 @@ public class Lexer {
         }
     }
 
-    //method for adding next character to the lexeme field
+    /*
+    method for adding next character to the lexeme field. Separated this from the original getNextChar
+    because I found I was adding characters in places I wasn't always getting the next character.
+    */
+
     void addNextChar() {
         this.lexeme += this.nextChar;
     }
@@ -234,10 +249,12 @@ public class Lexer {
 
     LexerToken char_lit() { // handle character literals
 
-        char c = nextChar;
+        //get character from lexeme
+        char c = lexeme.toCharArray()[1];
         int n = (int) c;
 
-        return new LexerToken(LexerToken.TokenType.Integer, "" + n, line, linePos);
+        return new LexerToken(LexerToken.TokenType.Character, "" + n, line, linePos);
+        // return new LexerToken(LexerToken.TokenType.Character, n + " '" + c + "'", line, linePos);
     }
 
     LexerToken string_lit() { // handle string literals
@@ -249,8 +266,9 @@ public class Lexer {
     boolean div_or_comment() { // handle division or comments
 
         if (this.nextChar == '/') {// need to peak 1 more character ahead...
-            getNextChar();
-            if (this.nextChar == '*') {
+            char oneCharAhead = source.charAt(charPosition + 1);
+            if (oneCharAhead == '*') {
+                getNextChar();
                 addNextChar();
                 findStringCommentEnd('/', true);
                 return true;
@@ -260,6 +278,7 @@ public class Lexer {
         return false;
     }
 
+    //Helper method for checking if this lexeme is actually a string literal
     boolean isStringLiteral() {
 
         if (this.nextChar == '\"') {
@@ -270,6 +289,24 @@ public class Lexer {
         return false;
     }
 
+    //Method for checking the next character for char literal patterns
+    boolean ischarLiteral() {
+
+        if (this.nextChar == '\'') {
+            getNextChar();
+            findStringCommentEnd('\'', false);
+
+            //check to see if it matches the pattern provided via project instructions
+            Pattern pattern = Pattern.compile("'([^'\\n]|\\\\n|\\\\\\\\)'");
+            Matcher matcher = pattern.matcher(lexeme);
+            if (matcher.matches()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //method for creating a token for integers and identifiers
     LexerToken identifier_or_integer(tokenCategory tokenCategory) { // handle identifiers and integers
         getNextChar();
         if (tokenCategory == Lexer.tokenCategory.identifier) {
@@ -282,7 +319,27 @@ public class Lexer {
     //method for handling operator and keyword lexeme
     LexerToken ops_keywords() {
 
-        buildLexeme();
+        //we need to check one character ahead to see if this operator uses two symbols
+        char oneCharAhead = source.charAt(charPosition + 1);
+        String twoChar = lexeme + oneCharAhead;
+
+        if (keywords.containsKey(twoChar)) {
+            getNextChar();
+            addNextChar();
+        }
+
+        //need to check if it was a unary not operator
+        if (lexeme.equals("!") && !Character.isWhitespace(oneCharAhead) && oneCharAhead != '=') {
+            getNextChar();
+            return new LexerToken(LexerToken.TokenType.Op_not, "", line, linePos);
+        }
+        //check if it was a unary minus
+        else if (lexeme.equals("-") && !Character.isWhitespace(oneCharAhead)) {
+            getNextChar();
+            return new LexerToken(LexerToken.TokenType.Op_negate, "", line, linePos);
+        }
+
+        //buildLexeme();
         LexerToken.TokenType type = keywords.get(lexeme);
         getNextChar();
 
@@ -303,9 +360,11 @@ public class Lexer {
         StringBuilder sb = new StringBuilder();
 
         while ((token = getToken()).tokenType != LexerToken.TokenType.End_of_input) {
-            sb.append(token);
-            sb.append("\n");
-            System.out.println(token);
+            if (token.tokenType != LexerToken.TokenType.Blank) { //skip the comments section
+                sb.append(token);
+                sb.append("\n");
+                System.out.println(token);
+            }
         }
         sb.append(token);
         System.out.println(token);
@@ -314,7 +373,7 @@ public class Lexer {
 
     static void outputToFile(String result) {
         try {
-            FileWriter myWriter = new FileWriter("src/main/resources/hello.lex");
+            FileWriter myWriter = new FileWriter("main\\resources\\hello.lex");
             myWriter.write(result);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -323,6 +382,7 @@ public class Lexer {
         }
     }
 
+    //helper method for setting up the map with all the token types in it
     void buildKeywordsMap() {
 
         keywords = new HashMap<String, LexerToken.TokenType>();
@@ -357,6 +417,12 @@ public class Lexer {
         keywords.put("while", LexerToken.TokenType.Keyword_while);
     }
 
+    /*
+    another helper method for setting up the categories map.
+    I'm using a map because it seemed faster and easier than creating a bunch of if statements
+    or switch cases for the different categories.
+     */
+    //
     void buildCategoryMap() {
         categories = new HashMap<String, tokenCategory>();
 
@@ -390,7 +456,18 @@ public class Lexer {
         categories.put("putc", tokenCategory.keyword);
 
         categories.put("\"", tokenCategory.string);
+        categories.put("\'", tokenCategory.character);
 
+        categories.put("\n", tokenCategory.character);
         categories.put("\u0000", tokenCategory.eof);
+    }
+
+    static void error(int line, int pos, String msg) {
+        if (line > 0 && pos > 0) {
+            System.out.printf("Invalid token: %s, found at line %d, linePos %d\n", msg, line, pos);
+        } else {
+            System.out.println(msg);
+        }
+        System.exit(1);
     }
 }
