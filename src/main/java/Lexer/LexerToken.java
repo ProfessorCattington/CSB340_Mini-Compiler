@@ -1,3 +1,5 @@
+package Lexer;
+
 public class LexerToken extends Token {
 
     public TokenType tokenType;
