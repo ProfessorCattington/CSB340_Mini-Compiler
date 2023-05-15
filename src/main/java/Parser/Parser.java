@@ -207,7 +207,7 @@ public class Parser {
             result = Node.make_leaf(NodeType.nd_Integer, getVal());
             getNextToken();
         } else {
-            error(token.line, token.pos, "ERROR");
+            error(token.line, token.pos, "ERROR: Unexpected Input");
         }
         int precedence = 0;
         while(getType().isBinary() && getType().getPrecedence() >= p) {
@@ -302,7 +302,7 @@ public class Parser {
         } else if(getType() == TokenType.End_of_input) {
             // do nothing
         } else  {
-            error(token.line, token.pos, "ERROR");
+            error(token.line, token.pos, "ERROR: Unexpected Input");
         }
         return t;
     }
