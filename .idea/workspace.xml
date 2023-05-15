@@ -5,33 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Lexer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Parser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/99bottles.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/count.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/count.lex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/count.par" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fizzbuzz.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hello.lex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hello.par" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hello.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/loop.lex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/loop.par" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/loop.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/prime.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lexer/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Lexer.java.bak" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lexer/Lexer.java.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LexerToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lexer/LexerToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProgramRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lexer/ProgramRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lexer/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +46,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_opened_file_path": "/Users/elloyd/Desktop/NSC/Courses/Spring Courses/Programming Languages/Projects/MiniCompilerProject/src/main/resources",
+    "last_opened_file_path": "C:/Users/chris/Desktop/CSB310/CompilerProject/CSB340_Mini-Compiler",
+    "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -88,14 +70,14 @@
   </component>
   <component name="RunManager" selected="Application.Parser">
     <configuration name="Lexer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Lexer" />
+      <option name="MAIN_CLASS_NAME" value="Lexer.Lexer" />
       <module name="MiniCompiler.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Parser" />
+      <option name="MAIN_CLASS_NAME" value="Parser.Parser" />
       <module name="MiniCompiler.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -116,8 +98,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678159185811</updated>
+      <workItem from="1684133509663" duration="388000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

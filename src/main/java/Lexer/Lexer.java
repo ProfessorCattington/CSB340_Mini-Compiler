@@ -1,3 +1,5 @@
+package Lexer;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -254,7 +256,7 @@ public class Lexer {
         int n = (int) c;
 
         return new LexerToken(LexerToken.TokenType.Character, "" + n, line, linePos);
-        // return new LexerToken(LexerToken.TokenType.Character, n + " '" + c + "'", line, linePos);
+        // return new Lexer.LexerToken(Lexer.LexerToken.TokenType.Character, n + " '" + c + "'", line, linePos);
     }
 
     LexerToken string_lit() { // handle string literals
