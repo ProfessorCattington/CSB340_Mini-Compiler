@@ -173,15 +173,45 @@ class Parser {
         // create nodes for token types such as LeftParen, Op_add, Op_subtract, etc.
         // be very careful here and be aware of the precendence rules for the AST tree
         Node result = null, node;
-
-
-
-
-
-
-
-
-
+        TokenType temp;
+        if(token.tokentype == TokenType.LeftParen) {
+            result = paren_expr();
+        } else if(token.tokentype == TokenType.Op_subtract || token.tokentype == TokenType.Op_add) {
+            if(token.tokentype == TokenType.Op_subtract) {
+                temp = TokenType.Op_negate;
+            } else {
+                temp = TokenType.Op_add;
+            }
+            getNextToken();
+            node = expr(TokenType.Op_negate.getPrecedence());
+            if(temp == TokenType.Op_negate) {
+                result = Node.make_node(NodeType.nd_Negate, node);
+            } else {
+                result = node;
+            }
+        } else if(token.tokentype == TokenType.Op_not) {
+            getNextToken();
+            result = Node.make_node(NodeType.nd_Not, expr(TokenType.Op_not.getPrecedence()));
+        } else if(token.tokentype == TokenType.Identifier) {
+            result = Node.make_leaf(NodeType.nd_Ident, token.value);
+            getNextToken();
+        } else if(token.tokentype == TokenType.Integer) {
+            result = Node.make_leaf(NodeType.nd_Integer, token.value);
+            getNextToken();
+        } else {
+            error(token.line, token.pos, "ERROR: Unexpected Token");
+        }
+        int precedence = 0;
+        while(token.tokentype.isBinary() && token.tokentype.getPrecedence() >= p) {
+            temp = token.tokentype;
+            getNextToken();
+            precedence = temp.getPrecedence();
+            if(temp.isRightAssoc() == false) {
+                precedence++;
+            }
+            node = expr(precedence);
+            result = Node.make_node(temp.getNodeType(), result, node);
+        }
         return result;
     }
 
