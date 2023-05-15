@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-class Parser {
+public class Parser {
     private List<Token> source;
     private Token token;
     private int position;
@@ -169,15 +169,23 @@ class Parser {
         return this.token;
     }
 
+    TokenType getType() {
+        return this.token.tokentype;
+    }
+
+    String getVal() {
+        return this.token.value;
+    }
+
     Node expr(int p) {
         // create nodes for token types such as LeftParen, Op_add, Op_subtract, etc.
-        // be very careful here and be aware of the precendence rules for the AST tree
+        // be very careful here and be aware of the precedence rules for the AST tree
         Node result = null, node;
         TokenType temp;
-        if(token.tokentype == TokenType.LeftParen) {
+        if(getType() == TokenType.LeftParen) {
             result = paren_expr();
-        } else if(token.tokentype == TokenType.Op_subtract || token.tokentype == TokenType.Op_add) {
-            if(token.tokentype == TokenType.Op_subtract) {
+        } else if(getType() == TokenType.Op_subtract || getType() == TokenType.Op_add) {
+            if(getType() == TokenType.Op_subtract) {
                 temp = TokenType.Op_negate;
             } else {
                 temp = TokenType.Op_add;
@@ -189,21 +197,21 @@ class Parser {
             } else {
                 result = node;
             }
-        } else if(token.tokentype == TokenType.Op_not) {
+        } else if(getType() == TokenType.Op_not) {
             getNextToken();
             result = Node.make_node(NodeType.nd_Not, expr(TokenType.Op_not.getPrecedence()));
-        } else if(token.tokentype == TokenType.Identifier) {
-            result = Node.make_leaf(NodeType.nd_Ident, token.value);
+        } else if(getType() == TokenType.Identifier) {
+            result = Node.make_leaf(NodeType.nd_Ident, getVal());
             getNextToken();
-        } else if(token.tokentype == TokenType.Integer) {
-            result = Node.make_leaf(NodeType.nd_Integer, token.value);
+        } else if(getType() == TokenType.Integer) {
+            result = Node.make_leaf(NodeType.nd_Integer, getVal());
             getNextToken();
         } else {
             error(token.line, token.pos, "ERROR");
         }
         int precedence = 0;
-        while(token.tokentype.isBinary() && token.tokentype.getPrecedence() >= p) {
-            temp = token.tokentype;
+        while(getType().isBinary() && getType().getPrecedence() >= p) {
+            temp = getType();
             getNextToken();
             precedence = temp.getPrecedence();
             if(temp.isRightAssoc() == false) {
@@ -234,35 +242,35 @@ class Parser {
         // this one handles TokenTypes such as Keyword_if, Keyword_else, nd_If, Keyword_print, etc.
         // also handles while, end of file, braces
         Node s, s2, t = null, e, v;
-        if(token.tokentype == TokenType.Keyword_if) {
+        if(getType() == TokenType.Keyword_if) {
             getNextToken();
             e = paren_expr();
             s = stmt();
             s2 = null;
-            if(token.tokentype == TokenType.Keyword_else) {
+            if(getType() == TokenType.Keyword_else) {
                 getNextToken();
                 s2 = stmt();
             }
             t = Node.make_node(NodeType.nd_If, e, Node.make_node(NodeType.nd_If, s, s2));
-        } else if(token.tokentype == TokenType.Keyword_putc) {
+        } else if(getType() == TokenType.Keyword_putc) {
             getNextToken();
             e = paren_expr();
             t = Node.make_node(NodeType.nd_Prtc, e);
             expect("Putc", TokenType.Semicolon);
-        } else if(token.tokentype == TokenType.Keyword_print) {
+        } else if(getType() == TokenType.Keyword_print) {
             getNextToken();
             expect("Print", TokenType.LeftParen);
             while(1 == 1) {
-                if(token.tokentype == TokenType.String) {
+                if(getType() == TokenType.String) {
                     // print string
-                    e = Node.make_node(NodeType.nd_Prts, Node.make_leaf(NodeType.nd_String, token.value));
+                    e = Node.make_node(NodeType.nd_Prts, Node.make_leaf(NodeType.nd_String, getVal()));
                     getNextToken();
                 } else {
                     // print integer
                     e = Node.make_node(NodeType.nd_Prti, expr(0), null);
                 }
                 t = Node.make_node(NodeType.nd_Sequence, t, e);
-                if(token.tokentype == TokenType.Comma) {
+                if(getType() == TokenType.Comma) {
                     getNextToken();
                 } else {
                     break;
@@ -270,28 +278,28 @@ class Parser {
             }
             expect("Print", TokenType.RightParen);
             expect("Print", TokenType.Semicolon);
-        } else if(token.tokentype == TokenType.Semicolon) {
+        } else if(getType() == TokenType.Semicolon) {
             getNextToken();
-        } else if(token.tokentype == TokenType.Identifier) {
+        } else if(getType() == TokenType.Identifier) {
             v = Node.make_leaf(NodeType.nd_Ident, token.value);
             getNextToken();
             expect("assign", TokenType.Op_assign);
             e = expr(0);
             t = Node.make_node(NodeType.nd_Assign, v, e);
             expect("assign", TokenType.Semicolon);
-        } else if(token.tokentype == TokenType.Keyword_while) {
+        } else if(getType() == TokenType.Keyword_while) {
             getNextToken();
             e = paren_expr();
             s = stmt();
             t = Node.make_node(NodeType.nd_While, e, s);
-        } else if(token.tokentype == TokenType.LeftBrace) {
+        } else if(getType() == TokenType.LeftBrace) {
             getNextToken();
-            while(token.tokentype != TokenType.End_of_input &&
-                    token.tokentype != TokenType.RightBrace) {
+            while(getType() != TokenType.End_of_input &&
+                    getType() != TokenType.RightBrace) {
                 t = Node.make_node(NodeType.nd_Sequence, t, stmt());
             }
             expect("LeftBrace", TokenType.RightBrace);
-        } else if(token.tokentype == TokenType.End_of_input) {
+        } else if(getType() == TokenType.End_of_input) {
             // do nothing
         } else  {
             error(token.line, token.pos, "ERROR");
@@ -327,14 +335,24 @@ class Parser {
                 printAST(t.left, sb);
                 printAST(t.right, sb);
             }
-
         }
         return sb.toString();
     }
 
     static void outputToFile(String result) {
         try {
-            FileWriter myWriter = new FileWriter("src/main/resources/count_test.par");
+            FileWriter myWriter = new FileWriter("src/main/resources/loop_test.par");
+            myWriter.write(result);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static void outputToFile(String result, String file) {
+        try {
+            FileWriter myWriter = new FileWriter(file);
             myWriter.write(result);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -389,7 +407,7 @@ class Parser {
                 str_to_tokens.put("Integer", TokenType.Integer);
                 str_to_tokens.put("String", TokenType.String);
 
-                Scanner s = new Scanner(new File("src/main/resources/count.lex"));
+                Scanner s = new Scanner(new File("src/main/resources/loop.lex"));
                 String source = " ";
                 while (s.hasNext()) {
                     String str = s.nextLine();
