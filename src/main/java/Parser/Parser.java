@@ -199,7 +199,7 @@ class Parser {
             result = Node.make_leaf(NodeType.nd_Integer, token.value);
             getNextToken();
         } else {
-            error(token.line, token.pos, "ERROR: Unexpected Token");
+            error(token.line, token.pos, "ERROR");
         }
         int precedence = 0;
         while(token.tokentype.isBinary() && token.tokentype.getPrecedence() >= p) {
@@ -234,7 +234,68 @@ class Parser {
         // this one handles TokenTypes such as Keyword_if, Keyword_else, nd_If, Keyword_print, etc.
         // also handles while, end of file, braces
         Node s, s2, t = null, e, v;
-
+        if(token.tokentype == TokenType.Keyword_if) {
+            getNextToken();
+            e = paren_expr();
+            s = stmt();
+            s2 = null;
+            if(token.tokentype == TokenType.Keyword_else) {
+                getNextToken();
+                s2 = stmt();
+            }
+            t = Node.make_node(NodeType.nd_If, e, Node.make_node(NodeType.nd_If, s, s2));
+        } else if(token.tokentype == TokenType.Keyword_putc) {
+            getNextToken();
+            e = paren_expr();
+            t = Node.make_node(NodeType.nd_Prtc, e);
+            expect("Putc", TokenType.Semicolon);
+        } else if(token.tokentype == TokenType.Keyword_print) {
+            getNextToken();
+            expect("Print", TokenType.LeftParen);
+            while(1 == 1) {
+                if(token.tokentype == TokenType.String) {
+                    // print string
+                    e = Node.make_node(NodeType.nd_Prts, Node.make_leaf(NodeType.nd_String, token.value));
+                    getNextToken();
+                } else {
+                    // print integer
+                    e = Node.make_node(NodeType.nd_Prti, expr(0), null);
+                }
+                t = Node.make_node(NodeType.nd_Sequence, t, e);
+                if(token.tokentype == TokenType.Comma) {
+                    getNextToken();
+                } else {
+                    break;
+                }
+            }
+            expect("Print", TokenType.RightParen);
+            expect("Print", TokenType.Semicolon);
+        } else if(token.tokentype == TokenType.Semicolon) {
+            getNextToken();
+        } else if(token.tokentype == TokenType.Identifier) {
+            v = Node.make_leaf(NodeType.nd_Ident, token.value);
+            getNextToken();
+            expect("assign", TokenType.Op_assign);
+            e = expr(0);
+            t = Node.make_node(NodeType.nd_Assign, v, e);
+            expect("assign", TokenType.Semicolon);
+        } else if(token.tokentype == TokenType.Keyword_while) {
+            getNextToken();
+            e = paren_expr();
+            s = stmt();
+            t = Node.make_node(NodeType.nd_While, e, s);
+        } else if(token.tokentype == TokenType.LeftBrace) {
+            getNextToken();
+            while(token.tokentype != TokenType.End_of_input &&
+                    token.tokentype != TokenType.RightBrace) {
+                t = Node.make_node(NodeType.nd_Sequence, t, stmt());
+            }
+            expect("LeftBrace", TokenType.RightBrace);
+        } else if(token.tokentype == TokenType.End_of_input) {
+            // do nothing
+        } else  {
+            error(token.line, token.pos, "ERROR");
+        }
         return t;
     }
 
