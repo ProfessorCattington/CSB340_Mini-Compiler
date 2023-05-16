@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class LexerJunitTests {
@@ -13,7 +14,7 @@ public class LexerJunitTests {
 
     @Test
     @DisplayName("Verify the lexer produces an output file")
-    void testLexerMakesExpectedOutput() {
+    void testLexerMakesExpectedOutput() throws FileNotFoundException {
 
         String outputFilePath = "src\\main\\resources\\lexer_output\\prime.lex";
         String inputFilePath = "src\\main\\resources\\prime.c";
@@ -32,7 +33,7 @@ public class LexerJunitTests {
 
     @Test
     @DisplayName("Test Lexer's file output matches the verification file'")
-    void testLexerOutputAgainstVerificationFile() {
+    void testLexerOutputAgainstVerificationFile() throws FileNotFoundException {
 
         String verificationFilePath = "main\\resources\\verification_files\\prime.lex";
         String outputFilePath = "main\\resources\\lexer_output\\prime.lex";
