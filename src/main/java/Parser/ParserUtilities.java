@@ -1,10 +1,35 @@
 package Parser;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class ParserUtilities {
+    public static void error(int line, int pos, String msg) {
+        if (line > 0 && pos > 0) {
+            System.out.printf("%s in line %d, pos %d\n", msg, line, pos);
+        } else {
+            System.out.println(msg);
+        }
+        System.exit(1);
+    }
+
+    public static String buildAST(ParserNode t, StringBuilder sb) {
+        int i = 0;
+        if (t == null) {
+            sb.append(";");
+            sb.append("\n");
+        } else {
+            sb.append(t.nt);
+            if (t.nt == ParserNodeType.nd_Ident || t.nt == ParserNodeType.nd_Integer || t.nt == ParserNodeType.nd_String) {
+                sb.append(" " + t.value);
+                sb.append("\n");
+            } else {
+                sb.append("\n");
+                buildAST(t.left, sb);
+                buildAST(t.right, sb);
+            }
+        }
+        return sb.toString();
+    }
 
     public static void printAST(String AST) {
         System.out.println(AST);

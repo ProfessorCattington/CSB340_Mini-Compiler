@@ -1,4 +1,5 @@
 package Parser;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class ParserClass {
@@ -59,14 +60,14 @@ public class ParserClass {
             result = ParserNode.make_leaf(ParserNodeType.nd_Integer, getVal());
             getNextToken();
         } else {
-            error(token.line, token.pos, "ERROR: Unexpected Input");
+            ParserUtilities.error(token.line, token.pos, "ERROR: Unexpected Input");
         }
         int precedence = 0;
         while (getType().isBinary() && getType().getPrecedence() >= p) {
             temp = getType();
             getNextToken();
             precedence = temp.getPrecedence();
-            if (temp.isRightAssoc() == false) {
+            if (!temp.isRightAssoc()) {
                 precedence++;
             }
             node = expr(precedence);
@@ -87,7 +88,8 @@ public class ParserClass {
             getNextToken();
             return;
         }
-        error(this.token.line, this.token.pos, msg + ": Expecting '" + s + "', found: '" + this.token.tokentype + "'");
+        ParserUtilities.error(this.token.line, this.token.pos, msg + ": Expecting '" + s + "', found: '"
+                + this.token.tokentype + "'");
     }
 
     public ParserNode stmt() {
@@ -122,7 +124,8 @@ public class ParserClass {
                     e = ParserNode.make_node(ParserNodeType.nd_Prti, expr(0), null);
                 }
                 t = ParserNode.make_node(ParserNodeType.nd_Sequence, t, e);
-                if (getType() == ParserTokenType.Comma) {
+
+                if (isType(ParserTokenType.Comma)) {
                     getNextToken();
                 } else {
                     break;
@@ -154,7 +157,7 @@ public class ParserClass {
         } else if (isType(ParserTokenType.End_of_input)) {
             // do nothing
         } else {
-            error(token.line, token.pos, "ERROR: Unexpected Input");
+            ParserUtilities.error(token.line, token.pos, "ERROR: Unexpected Input");
         }
         return t;
     }
@@ -168,33 +171,27 @@ public class ParserClass {
         return t;
     }
 
-    public static void error(int line, int pos, String msg) {
-        if (line > 0 && pos > 0) {
-            System.out.printf("%s in line %d, pos %d\n", msg, line, pos);
+    public static void runParser(String input, String output) {
+        if (1 == 1) {
+            try {
+                List<ParserToken> list = ParserUtilities.inputFromFile(input);
+                ParserClass p = new ParserClass(list);
+                String result = "";
+                StringBuilder sb = new StringBuilder();
+                result = ParserUtilities.buildAST(p.parse(), sb);
+                ParserUtilities.printAST(result);
+                ParserUtilities.outputToFile(result, output);
+            } catch (FileNotFoundException e) {
+                ParserUtilities.error(-1, -1, "Exception: " + e.getMessage());
+            } catch (Exception e) {
+                ParserUtilities.error(-1, -1, "Exception: " + e.getMessage());
+            }
         } else {
-            System.out.println(msg);
+            ParserUtilities.error(-1, -1, "No args");
         }
-        System.exit(1);
     }
 
-    public static String buildAST(ParserNode t, StringBuilder sb) {
-        int i = 0;
-        if (t == null) {
-            sb.append(";");
-            sb.append("\n");
-        } else {
-            sb.append(t.nt);
-            if (t.nt == ParserNodeType.nd_Ident || t.nt == ParserNodeType.nd_Integer || t.nt == ParserNodeType.nd_String) {
-                sb.append(" " + t.value);
-                sb.append("\n");
-            } else {
-                sb.append("\n");
-                buildAST(t.left, sb);
-                buildAST(t.right, sb);
-            }
-        }
-        return sb.toString();
-    }
+
 }
 
 
