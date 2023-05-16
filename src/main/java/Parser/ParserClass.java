@@ -84,12 +84,12 @@ public class ParserClass {
     }
 
     public void expect(String msg, ParserTokenType s) {
-        if (this.token.tokentype == s) {
+        if (getType() == s) {
             getNextToken();
             return;
         }
         ParserUtilities.error(this.token.line, this.token.pos, msg + ": Expecting '" + s + "', found: '"
-                + this.token.tokentype + "'");
+                + getType() + "'");
     }
 
     public ParserNode stmt() {
@@ -165,22 +165,22 @@ public class ParserClass {
     public ParserNode parse() {
         ParserNode t = null;
         getNextToken();
-        while (this.token.tokentype != ParserTokenType.End_of_input) {
+        while (getType() != ParserTokenType.End_of_input) {
             t = ParserNode.make_node(ParserNodeType.nd_Sequence, t, stmt());
         }
         return t;
     }
 
-    public static void runParser(String input, String output) {
+    public static void runParser(String inputFilePath, String outputFilePath) {
         if (1 == 1) {
             try {
-                List<ParserToken> list = ParserUtilities.inputFromFile(input);
+                List<ParserToken> list = ParserUtilities.inputFromFile(inputFilePath);
                 ParserClass p = new ParserClass(list);
                 String result = "";
                 StringBuilder sb = new StringBuilder();
                 result = ParserUtilities.buildAST(p.parse(), sb);
                 ParserUtilities.printAST(result);
-                ParserUtilities.outputToFile(result, output);
+                ParserUtilities.outputToFile(result, outputFilePath);
             } catch (FileNotFoundException e) {
                 ParserUtilities.error(-1, -1, "Exception: " + e.getMessage());
             } catch (Exception e) {
@@ -191,7 +191,13 @@ public class ParserClass {
         }
     }
 
-
+    public static void runParser(ArrayList<String> inputFilePaths, ArrayList<String> outputFilePaths) {
+        if(inputFilePaths.size() == outputFilePaths.size()) {
+            for(int i = 0; i < inputFilePaths.size(); i++) {
+                runParser(inputFilePaths.get(i), outputFilePaths.get(i));
+            }
+        }
+    }
 }
 
 
