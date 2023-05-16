@@ -10,9 +10,8 @@ public class ProgramRunner {
     public static void main(String[] args) {
 
         ArrayList<String> files = new ArrayList<String>();
-        files.add("prime.c");
-        files.add("loop.py");
-        files.add("count.c");
+        files.add("nfactorial.c");
+        files.add("utopiantree.c");
 
         lexicalAnalysis_multi(files);
     }
