@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/Parser/practiceJunitTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/loop_test.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/loop_test.par" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/t.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Parser/ParserJunitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Parser/ParserJunitTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -40,25 +39,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/chris/Desktop/CSB310/CompilerProject/CSB340_Mini-Compiler&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "C:/Users/chris/Desktop/CSB310/CompilerProject/CSB340_Mini-Compiler/src/main/resources/additional_input_files",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\chris\Desktop\CSB310\CompilerProject\CSB340_Mini-Compiler\src\main\resources\additional_input_files" />
       <recent name="C:\Users\chris\Desktop\CSB310\CompilerProject\CSB340_Mini-Compiler\src" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chris\Desktop\CSB310\CompilerProject\CSB340_Mini-Compiler\src\main\resources\Git_Requirement_Screenshots" />
+      <recent name="C:\Users\chris\Desktop\CSB310\CompilerProject\CSB340_Mini-Compiler\src\main\resources\primary_input" />
+      <recent name="C:\Users\chris\Desktop\CSB310\CompilerProject\CSB340_Mini-Compiler\src\main\resources\example_input_files" />
+      <recent name="C:\Users\chris\Desktop\CSB310\CompilerProject\CSB340_Mini-Compiler\src\main\resources\orginal_input_files" />
       <recent name="C:\Users\chris\Desktop\CSB310\CompilerProject\CSB340_Mini-Compiler\src\main\java\Lexer" />
-      <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -66,26 +69,88 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Parser" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.Parser">
-    <configuration name="Lexer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Lexer.Lexer" />
+  <component name="RunManager" selected="JUnit.ParserJunitTests">
+    <configuration name="MiniCompilerDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MiniCompilerDriver" />
       <module name="MiniCompiler.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Parser.Parser" />
-      <module name="MiniCompiler.main" />
+    <configuration name="ParserJunitTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MiniCompiler.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Parser" />
+      <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserJunitTests.compareOutput1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MiniCompiler.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Parser" />
+      <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
+      <option name="METHOD_NAME" value="compareOutput1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserJunitTests.compareOutput2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MiniCompiler.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Parser" />
+      <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
+      <option name="METHOD_NAME" value="compareOutput2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserJunitTests.compareOutput3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MiniCompiler.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Parser" />
+      <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
+      <option name="METHOD_NAME" value="compareOutput3" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Parser" />
-        <item itemvalue="Application.Lexer" />
+        <item itemvalue="JUnit.ParserJunitTests" />
+        <item itemvalue="JUnit.ParserJunitTests.compareOutput3" />
+        <item itemvalue="JUnit.ParserJunitTests.compareOutput2" />
+        <item itemvalue="JUnit.ParserJunitTests.compareOutput1" />
+        <item itemvalue="Application.MiniCompilerDriver" />
       </list>
     </recent_temporary>
   </component>
@@ -97,7 +162,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678159185811</updated>
-      <workItem from="1684133509663" duration="24161000" />
+      <workItem from="1684133509663" duration="57940000" />
     </task>
     <servers />
   </component>
