@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Lexer/LexerJunitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Lexer/LexerJunitTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Parser/ParserJunitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Parser/ParserJunitTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -65,11 +65,46 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Parser" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.LexerJunitTests">
+  <component name="RunManager" selected="Application.ParserDriver">
     <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Parser.Parser" />
       <module name="MiniCompiler.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Parser.OOP_parser.ParserDriver" />
+      <module name="MiniCompiler.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Parser.OOP_parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProgramRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Lexer.ProgramRunner" />
+      <module name="MiniCompiler.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Lexer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,45 +140,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParserJunitTests.compareOutput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MiniCompiler.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Parser" />
-      <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
-      <option name="METHOD_NAME" value="compareOutput" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParserJunitTests.simpleAssert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MiniCompiler.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Parser" />
-      <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
-      <option name="METHOD_NAME" value="simpleAssert" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ParserDriver" />
+        <item itemvalue="Application.Parser" />
+        <item itemvalue="Application.ProgramRunner" />
         <item itemvalue="JUnit.LexerJunitTests" />
         <item itemvalue="JUnit.LexerJunitTests.simpleAssert" />
-        <item itemvalue="JUnit.ParserJunitTests.compareOutput" />
-        <item itemvalue="JUnit.ParserJunitTests.simpleAssert" />
-        <item itemvalue="Application.Parser" />
       </list>
     </recent_temporary>
   </component>
@@ -155,7 +158,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678159185811</updated>
-      <workItem from="1684133509663" duration="35666000" />
+      <workItem from="1684133509663" duration="42225000" />
     </task>
     <servers />
   </component>
