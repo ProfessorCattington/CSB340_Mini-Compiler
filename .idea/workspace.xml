@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserNodeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserNodeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserTokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserTokenType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserUtilities.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +150,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678159185811</updated>
-      <workItem from="1684133509663" duration="55313000" />
+      <workItem from="1684133509663" duration="56441000" />
     </task>
     <servers />
   </component>

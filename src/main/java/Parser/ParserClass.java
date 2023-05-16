@@ -174,6 +174,7 @@ public class ParserClass {
         return t;
     }
 
+    // For parsing one file
     public static void runParser(String inputFilePath, String outputFilePath) {
         if (1 == 1) {
             try {
@@ -194,6 +195,7 @@ public class ParserClass {
         }
     }
 
+    // For parsing multiple files
     public static void runParser(ArrayList<String> inputFilePaths, ArrayList<String> outputFilePaths) {
         if(inputFilePaths.size() == outputFilePaths.size()) {
             for(int i = 0; i < inputFilePaths.size(); i++) {
