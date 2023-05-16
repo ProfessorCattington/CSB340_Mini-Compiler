@@ -11,7 +11,7 @@ public class LexerJunitTests {
     void simpleAssert() {
 
 
-        Lexer testLexer
+        Lexer testLexer;
 
         Assertions.assertEquals(1, 1);
     }

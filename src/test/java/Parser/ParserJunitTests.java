@@ -1,8 +1,7 @@
 package Parser;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import java.io.*;
 
 public class ParserJunitTests {
     @Test
@@ -10,5 +9,4 @@ public class ParserJunitTests {
     void simpleAssert() {
         Assertions.assertEquals(1, 1);
     }
-
 }

@@ -10,8 +10,8 @@ public class ProgramRunner {
     public static void main(String[] args) {
 
         ArrayList<String> files = new ArrayList<String>();
-        files.add("nfactorial.c");
-        files.add("utopiantree.c");
+        files.add("additional_input_files/nfactorial.c");
+        files.add("additional_input_files/utopiantree.c");
 
         lexicalAnalysis_multi(files);
     }
