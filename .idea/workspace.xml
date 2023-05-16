@@ -74,9 +74,15 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.ParserJunitTests">
-    <configuration name="MiniCompilerDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MiniCompilerDriver" />
+    <configuration name="ParserDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Parser.ParserDriver" />
       <module name="MiniCompiler.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -96,7 +102,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParserJunitTests.compareOutput1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserJunitTests.FileThrowsException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <extension name="coverage">
         <pattern>
@@ -106,13 +112,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="Parser" />
       <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
-      <option name="METHOD_NAME" value="compareOutput1" />
+      <option name="METHOD_NAME" value="FileThrowsException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParserJunitTests.compareOutput2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserJunitTests.inputFileThrowsException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <extension name="coverage">
         <pattern>
@@ -122,13 +128,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="Parser" />
       <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
-      <option name="METHOD_NAME" value="compareOutput2" />
+      <option name="METHOD_NAME" value="inputFileThrowsException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParserJunitTests.compareOutput3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserJunitTests.outputFileException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <extension name="coverage">
         <pattern>
@@ -138,7 +144,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="Parser" />
       <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
-      <option name="METHOD_NAME" value="compareOutput3" />
+      <option name="METHOD_NAME" value="outputFileException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -147,10 +153,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ParserJunitTests" />
-        <item itemvalue="JUnit.ParserJunitTests.compareOutput3" />
-        <item itemvalue="JUnit.ParserJunitTests.compareOutput2" />
-        <item itemvalue="JUnit.ParserJunitTests.compareOutput1" />
-        <item itemvalue="Application.MiniCompilerDriver" />
+        <item itemvalue="Application.ParserDriver" />
+        <item itemvalue="JUnit.ParserJunitTests.FileThrowsException" />
+        <item itemvalue="JUnit.ParserJunitTests.inputFileThrowsException" />
+        <item itemvalue="JUnit.ParserJunitTests.outputFileException" />
       </list>
     </recent_temporary>
   </component>
@@ -162,7 +168,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678159185811</updated>
-      <workItem from="1684133509663" duration="57940000" />
+      <workItem from="1684133509663" duration="61741000" />
     </task>
     <servers />
   </component>
