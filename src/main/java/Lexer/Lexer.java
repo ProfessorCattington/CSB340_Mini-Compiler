@@ -1,8 +1,5 @@
 package Lexer;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,9 +14,6 @@ public class Lexer {
 
     Map<String, LexerToken.TokenType> keywords;
     Map<String, tokenCategory> categories;
-
-    private static final String errorMsg = "Invalid token: %s, found at line %d, linePos %d\n";
-    private static final String outputFilePath = "src\\main\\resources\\lexer_output\\";
 
     enum tokenCategory {
         operator,
@@ -43,15 +37,21 @@ public class Lexer {
         this.nextChar = this.source.charAt(charPosition);
         this.lexeme = "";
 
-        buildKeywordsMap();
-        buildCategoryMap();
+        this.keywords = LexerUtilities.buildKeywordsMap();
+        this.categories = LexerUtilities.buildCategoryMap();
     }
+
+    public int getLine(){return this.line;}
+    public int getLinePos(){return this.linePos;}
+    public int getCharPosition(){ return this.charPosition;}
+    public String getSource(){ return this.source;}
+    public String getLexeme(){return this.lexeme;}
 
     /*
     Primary method for this class. Restarts the line position counter and clears the lexeme string
     Checks for EOF and whitespace then categorizes the lexeme it finds into symbols, identifiers, etc
      */
-    LexerToken getToken() {
+    public LexerToken getToken() {
 
         //reset the lexeme field so we can start over
         this.linePos += lexeme.length();
@@ -100,7 +100,7 @@ public class Lexer {
             case comment:
                 return new LexerToken(LexerToken.TokenType.Blank, "", 0, 0);
             case error:
-                error(this.line, this.linePos, this.lexeme);
+                LexerUtilities.error(this.line, this.linePos, this.lexeme);
             default:
                 return identifier_or_integer(tokenCategory);
         }
@@ -357,127 +357,5 @@ public class Lexer {
         getNextChar();
 
         return new LexerToken(type, "", line, linePos);
-    }
-
-    String printTokens() {
-
-        LexerToken token;
-        StringBuilder sb = new StringBuilder();
-
-        while ((token = getToken()).tokenType != LexerToken.TokenType.End_of_input) {
-            if (token.tokenType != LexerToken.TokenType.Blank) { //skip the comments section
-                sb.append(token);
-                sb.append("\n");
-                System.out.println(token);
-            }
-        }
-        sb.append(token);
-        System.out.println(token);
-        return sb.toString();
-    }
-
-    static void outputToFile(String filename, String result) {
-
-        //clean off the input file name's extension and make a matching output file name w/ lex extension
-        String newFileName = filename.split("\\.")[0];
-        newFileName += ".lex";
-
-        try {
-            FileWriter myWriter = new FileWriter(outputFilePath + newFileName);
-            myWriter.write(result);
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    //helper method for setting up the map with all the token types in it
-    void buildKeywordsMap() {
-
-        keywords = new HashMap<String, LexerToken.TokenType>();
-
-        keywords.put("*", LexerToken.TokenType.Op_multiply);
-        keywords.put("/", LexerToken.TokenType.Op_divide);
-        keywords.put("%", LexerToken.TokenType.Op_mod);
-        keywords.put("+", LexerToken.TokenType.Op_add);
-        keywords.put("-", LexerToken.TokenType.Op_subtract);
-        keywords.put("<", LexerToken.TokenType.Op_less);
-        keywords.put("<=", LexerToken.TokenType.Op_lessequal);
-        keywords.put(">", LexerToken.TokenType.Op_greater);
-        keywords.put(">=", LexerToken.TokenType.Op_greaterequal);
-        keywords.put("==", LexerToken.TokenType.Op_equal);
-        keywords.put("!=", LexerToken.TokenType.Op_notequal);
-        keywords.put("!", LexerToken.TokenType.Op_not);
-        keywords.put("=", LexerToken.TokenType.Op_assign);
-        keywords.put("&&", LexerToken.TokenType.Op_and);
-        keywords.put("||", LexerToken.TokenType.Op_or);
-
-        keywords.put("(", LexerToken.TokenType.LeftParen);
-        keywords.put(")", LexerToken.TokenType.RightParen);
-        keywords.put("{", LexerToken.TokenType.LeftBrace);
-        keywords.put("}", LexerToken.TokenType.RightBrace);
-        keywords.put(";", LexerToken.TokenType.Semicolon);
-        keywords.put(",", LexerToken.TokenType.Comma);
-
-        keywords.put("if", LexerToken.TokenType.Keyword_if);
-        keywords.put("else", LexerToken.TokenType.Keyword_else);
-        keywords.put("print", LexerToken.TokenType.Keyword_print);
-        keywords.put("putc", LexerToken.TokenType.Keyword_putc);
-        keywords.put("while", LexerToken.TokenType.Keyword_while);
-    }
-
-    /*
-    another helper method for setting up the categories map.
-    I'm using a map because it seemed faster and easier than creating a bunch of if statements
-    or switch cases for the different categories.
-     */
-    //
-    void buildCategoryMap() {
-        categories = new HashMap<String, tokenCategory>();
-
-        categories.put("*", tokenCategory.operator);
-        categories.put("/", tokenCategory.operator);
-        categories.put("%", tokenCategory.operator);
-        categories.put("+", tokenCategory.operator);
-        categories.put("-", tokenCategory.operator);
-        categories.put("<", tokenCategory.operator);
-        categories.put("<=", tokenCategory.operator);
-        categories.put(">", tokenCategory.operator);
-        categories.put(">=", tokenCategory.operator);
-        categories.put("==", tokenCategory.operator);
-        categories.put("!=", tokenCategory.operator);
-        categories.put("!", tokenCategory.operator);
-        categories.put("=", tokenCategory.operator);
-        categories.put("&&", tokenCategory.operator);
-        categories.put("||", tokenCategory.operator);
-
-        categories.put("(", tokenCategory.symbol);
-        categories.put(")", tokenCategory.symbol);
-        categories.put("{", tokenCategory.symbol);
-        categories.put("}", tokenCategory.symbol);
-        categories.put(";", tokenCategory.symbol);
-        categories.put(",", tokenCategory.symbol);
-
-        categories.put("if", tokenCategory.keyword);
-        categories.put("else", tokenCategory.keyword);
-        categories.put("while", tokenCategory.keyword);
-        categories.put("print", tokenCategory.keyword);
-        categories.put("putc", tokenCategory.keyword);
-
-        categories.put("\"", tokenCategory.string);
-        categories.put("\'", tokenCategory.character);
-
-        categories.put("\n", tokenCategory.character);
-        categories.put("\u0000", tokenCategory.eof);
-    }
-
-    static void error(int line, int pos, String msg) {
-        if (line > 0 && pos > 0) {
-            System.out.printf(errorMsg, msg, line, pos);
-        } else {
-            System.out.println(msg);
-        }
-        System.exit(1);
     }
 }
