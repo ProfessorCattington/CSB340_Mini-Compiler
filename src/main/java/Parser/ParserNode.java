@@ -1,3 +1,6 @@
+/** Parser Node
+ * @author Chris */
+
 package Parser;
 
 public class ParserNode {

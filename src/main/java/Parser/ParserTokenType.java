@@ -1,3 +1,6 @@
+/** Parser Token Type
+ * @author Chris */
+
 package Parser;
 import java.util.*;
 
