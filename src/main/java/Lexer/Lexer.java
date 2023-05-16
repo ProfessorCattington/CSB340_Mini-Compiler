@@ -19,7 +19,7 @@ public class Lexer {
     Map<String, tokenCategory> categories;
 
     private static final String errorMsg = "Invalid token: %s, found at line %d, linePos %d\n";
-    private static final String outputFilePath = "main\\resources\\lexer_output\\";
+    private static final String outputFilePath = "src\\main\\resources\\lexer_output\\";
 
     enum tokenCategory {
         operator,
