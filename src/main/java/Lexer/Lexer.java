@@ -18,6 +18,9 @@ public class Lexer {
     Map<String, LexerToken.TokenType> keywords;
     Map<String, tokenCategory> categories;
 
+    private static final String errorMsg = "Invalid token: %s, found at line %d, linePos %d\n";
+    private static final String outputFilePath = "main\\resources\\lexer_output\\";
+
     enum tokenCategory {
         operator,
         symbol,
@@ -373,9 +376,14 @@ public class Lexer {
         return sb.toString();
     }
 
-    static void outputToFile(String result) {
+    static void outputToFile(String filename, String result) {
+
+        //clean off the input file name's extension and make a matching output file name w/ lex extension
+        String newFileName = filename.split("\\.")[0];
+        newFileName += ".lex";
+
         try {
-            FileWriter myWriter = new FileWriter("main\\resources\\hello.lex");
+            FileWriter myWriter = new FileWriter(outputFilePath + newFileName);
             myWriter.write(result);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -466,7 +474,7 @@ public class Lexer {
 
     static void error(int line, int pos, String msg) {
         if (line > 0 && pos > 0) {
-            System.out.printf("Invalid token: %s, found at line %d, linePos %d\n", msg, line, pos);
+            System.out.printf(errorMsg, msg, line, pos);
         } else {
             System.out.println(msg);
         }
