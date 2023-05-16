@@ -1,0 +1,43 @@
+Sequence
+Sequence
+Sequence
+Sequence
+Sequence
+;
+Assign
+Identifier n 
+Integer 100 
+Assign
+Identifier sum 
+Integer 0 
+While
+Greater
+Identifier n 
+Integer 0 
+Sequence
+Sequence
+;
+Assign
+Identifier sum 
+Add
+Identifier sum 
+Multiply
+Identifier n 
+Subtract
+Identifier n 
+Integer 1 
+Assign
+Identifier n 
+Subtract
+Identifier n 
+Integer 1 
+Sequence
+;
+Prts
+String "The n factorial of n = 100 is : " 
+;
+Sequence
+;
+Prti
+Identifier sum 
+;

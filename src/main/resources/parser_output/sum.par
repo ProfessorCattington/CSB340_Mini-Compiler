@@ -1,0 +1,47 @@
+Sequence
+Sequence
+Sequence
+Sequence
+Sequence
+Sequence
+;
+Assign
+Identifier num1 
+Integer 5 
+Assign
+Identifier num2 
+Integer 3 
+Assign
+Identifier sum 
+Integer 0 
+Assign
+Identifier sum 
+Add
+Identifier sum 
+Identifier num1 
+Assign
+Identifier sum 
+Add
+Identifier sum 
+Identifier num2 
+Sequence
+Sequence
+Sequence
+Sequence
+Sequence
+;
+Prti
+Identifier num1 
+;
+Prts
+String " + " 
+;
+Prti
+Identifier num2 
+;
+Prts
+String " = " 
+;
+Prti
+Identifier sum 
+;

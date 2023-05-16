@@ -1,0 +1,51 @@
+Sequence
+Sequence
+;
+Assign
+Identifier grade 
+Integer 90 
+If
+GreaterEqual
+Identifier grade 
+Integer 90 
+If
+Sequence
+;
+Prts
+String "A Grade" 
+;
+If
+GreaterEqual
+Identifier grade 
+Integer 80 
+If
+Sequence
+;
+Prts
+String "B Grade" 
+;
+If
+GreaterEqual
+Identifier grade 
+Integer 70 
+If
+Sequence
+;
+Prts
+String "C Grade" 
+;
+If
+GreaterEqual
+Identifier grade 
+Integer 60 
+If
+Sequence
+;
+Prts
+String "D Grade" 
+;
+Sequence
+;
+Prts
+String "F Grade" 
+;

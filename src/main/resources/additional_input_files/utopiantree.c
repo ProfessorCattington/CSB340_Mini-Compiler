@@ -14,11 +14,11 @@ else
 		
         if (i % 2 != 0)
         {
-            output *= 2;
+            output = output * 2;
         }
         else if (i % 2 == 0)
         {
-            output += 1;
+            output = output + 1;
         }
     }
 }

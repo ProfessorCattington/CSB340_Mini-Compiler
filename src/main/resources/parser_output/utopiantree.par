@@ -1,0 +1,67 @@
+Sequence
+Sequence
+Sequence
+;
+Assign
+Identifier output 
+Integer 1 
+If
+Equal
+Identifier n 
+Integer 0 
+If
+;
+Sequence
+Sequence
+;
+Assign
+Identifier i 
+Integer 1 
+While
+Less
+Identifier i 
+Add
+Identifier n 
+Integer 1 
+Sequence
+Sequence
+;
+Assign
+Identifier i 
+Add
+Identifier i 
+Integer 1 
+If
+NotEqual
+Mod
+Identifier i 
+Integer 2 
+Integer 0 
+If
+Sequence
+;
+Assign
+Identifier output 
+Multiply
+Identifier output 
+Integer 2 
+If
+Equal
+Mod
+Identifier i 
+Integer 2 
+Integer 0 
+If
+Sequence
+;
+Assign
+Identifier output 
+Add
+Identifier output 
+Integer 1 
+;
+Sequence
+;
+Prti
+Identifier output 
+;

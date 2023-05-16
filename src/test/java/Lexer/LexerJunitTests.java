@@ -9,9 +9,9 @@ import static Lexer.LexerUtilities.outputToFile;
 
 public class LexerJunitTests {
 
-    static String verificationFilePath = "../main/resources/primary_verification_files/";
-    static String inputFilePath = "../main/resources/primary_input/";
-    static String outputFilePath = "../main/resources/lexer_output/";
+    static String verificationFilePath = "src/main/resources/primary_verification_files/";
+    static String inputFilePath = "src/main/resources/primary_input/";
+    static String outputFilePath = "src/main/resources/lexer_output/";
 
     @Test
     @DisplayName("Verify Lexer class is constructed properly")
