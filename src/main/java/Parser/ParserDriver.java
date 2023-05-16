@@ -16,7 +16,7 @@ public class ParserDriver {
                 "src/main/resources/parser_output/prime.par");
 
 
-        // running multiple instances
+        // running multiple instances with example code
         ArrayList<String> inputFilePaths = new ArrayList<>(Arrays.asList(
                 "src/main/resources/example_input_files/count.lex",
                 "src/main/resources/example_input_files/hello.lex",
@@ -26,6 +26,19 @@ public class ParserDriver {
                 "src/main/resources/parser_output/hello.par",
                 "src/main/resources/parser_output/loop.par"));
         runParser(inputFilePaths, outputFilePaths);
+
+
+        runParser("src/main/resources/lexer_output/grades.lex",
+                "src/main/resources/parser_output/grades.par");
+
+        runParser("src/main/resources/lexer_output/utopiantree.lex",
+                "src/main/resources/parser_output/utopiantree.par");
+
+        runParser("src/main/resources/lexer_output/nfactorial.lex",
+                "src/main/resources/parser_output/nfactorial.par");
+
+        runParser("src/main/resources/lexer_output/sum.lex",
+                "src/main/resources/parser_output/sum.par");
     }
 }
 

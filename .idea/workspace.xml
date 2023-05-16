@@ -6,6 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/additional_input_files/grades.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/additional_input_files/grades.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/99bottles.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/99bottles.par" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/count.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/count.par" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/fizzbuzz.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/fizzbuzz.par" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/hello.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/hello.par" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/loop.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/loop.par" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/prime.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/prime.par" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Lexer/LexerJunitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Lexer/LexerJunitTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +82,20 @@
       <recent name="Parser" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ProgramRunner">
+  <component name="RunManager" selected="Application.ParserDriver">
+    <configuration name="LexerDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Lexer.LexerDriver" />
+      <module name="MiniCompiler.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Lexer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ParserDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Parser.ParserDriver" />
       <module name="MiniCompiler.main" />
@@ -100,6 +122,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LexerJunitTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MiniCompiler.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Lexer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Lexer" />
+      <option name="MAIN_CLASS_NAME" value="Lexer.LexerJunitTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ParserJunitTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <extension name="coverage">
@@ -115,45 +152,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParserJunitTests.FileThrowsException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MiniCompiler.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Parser" />
-      <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
-      <option name="METHOD_NAME" value="FileThrowsException" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParserJunitTests.inputFileThrowsException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MiniCompiler.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Parser" />
-      <option name="MAIN_CLASS_NAME" value="Parser.ParserJunitTests" />
-      <option name="METHOD_NAME" value="inputFileThrowsException" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ProgramRunner" />
+        <item itemvalue="JUnit.LexerJunitTests" />
         <item itemvalue="JUnit.ParserJunitTests" />
+        <item itemvalue="Application.LexerDriver" />
+        <item itemvalue="Application.ProgramRunner" />
         <item itemvalue="Application.ParserDriver" />
-        <item itemvalue="JUnit.ParserJunitTests.FileThrowsException" />
-        <item itemvalue="JUnit.ParserJunitTests.inputFileThrowsException" />
       </list>
     </recent_temporary>
   </component>
@@ -165,7 +170,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678159185811</updated>
-      <workItem from="1684133509663" duration="65824000" />
+      <workItem from="1684133509663" duration="70257000" />
     </task>
     <servers />
   </component>
