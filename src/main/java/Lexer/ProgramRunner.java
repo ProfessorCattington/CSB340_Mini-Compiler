@@ -2,29 +2,28 @@ package Lexer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProgramRunner {
 
     public static void main(String[] args) {
 
-        String errorString = "a = 100;\nprint(num);\n ╔";
-        String integerOperator = "1 - 1;";
-        String stringLiteral = "\"Hello, World\"";
-        String charLiteral = "a = 'a';";
-        Lexer l = new Lexer(errorString);
-        String result = l.printTokens();
-        //stubCode();
+        ArrayList<String> files = new ArrayList<String>();
+        files.add("prime.c");
+        files.add("loop.py");
+        files.add("count.c");
 
+        lexicalAnalysis_multi(files);
     }
 
     //code that was given. putting it here so I can test stuff in isolation
-    public static void stubCode() {
+    public static void lexicalAnalysis_single(String fileName) {
 
         if (1 == 1) {
             try {
 
-                File f = new File("main\\resources\\99bottles.c");
+                File f = new File("main\\resources\\" + fileName);
                 Scanner s = new Scanner(f);
                 String source = " ";
                 String result = " ";
@@ -34,7 +33,7 @@ public class ProgramRunner {
                 Lexer l = new Lexer(source);
                 result = l.printTokens();
 
-                Lexer.outputToFile(result);
+                Lexer.outputToFile(result, fileName);
 
             } catch (FileNotFoundException e) {
                 Lexer.error(-1, -1, "Exception: " + e.getMessage());
@@ -44,4 +43,29 @@ public class ProgramRunner {
         }
     }
 
+    //method for handling a large set of files
+    public static void lexicalAnalysis_multi(ArrayList<String> fileNames) {
+
+        for (int i = 0; i < fileNames.size(); i++) {
+
+            try {
+                String filePath = "main\\resources\\" + fileNames.get(i);
+                File f = new File(filePath);
+
+                Scanner s = new Scanner(f);
+                String source = " ";
+                String result = " ";
+                while (s.hasNext()) {
+                    source += s.nextLine() + "\n";
+                }
+                Lexer l = new Lexer(source);
+                result = l.printTokens();
+
+                Lexer.outputToFile(fileNames.get(i), result);
+
+            } catch (FileNotFoundException e) {
+                Lexer.error(-1, -1, "Exception: " + e.getMessage());
+            }
+        }
+    }
 }

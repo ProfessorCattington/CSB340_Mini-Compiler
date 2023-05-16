@@ -9,7 +9,7 @@ public class LexerToken extends Token {
         Op_negate, Op_not, Op_less, Op_lessequal, Op_greater, Op_greaterequal,
         Op_equal, Op_notequal, Op_assign, Op_and, Op_or, Keyword_if,
         Keyword_else, Keyword_while, Keyword_print, Keyword_putc, LeftParen, RightParen,
-        LeftBrace, RightBrace, Semicolon, Comma, Identifier, Integer, String, Character, Blank
+        LeftBrace, RightBrace, Semicolon, Comma, Identifier, Integer, String, Character, Blank, Error
     }
 
     LexerToken(TokenType tokenType, String value, int line, int pos) {
