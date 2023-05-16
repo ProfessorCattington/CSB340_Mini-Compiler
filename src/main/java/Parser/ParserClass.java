@@ -1,3 +1,6 @@
+/** Parser Class
+ * @author Chris */
+
 package Parser;
 import java.io.FileNotFoundException;
 import java.util.*;

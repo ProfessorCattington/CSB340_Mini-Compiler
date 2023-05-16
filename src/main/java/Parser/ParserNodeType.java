@@ -1,3 +1,6 @@
+/** Parser Node Type
+ * @author Chris */
+
 package Parser;
 
 public enum ParserNodeType {

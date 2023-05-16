@@ -1,3 +1,6 @@
+/** Parser Token
+ * @author Chris */
+
 package Parser;
 
 public class ParserToken {
