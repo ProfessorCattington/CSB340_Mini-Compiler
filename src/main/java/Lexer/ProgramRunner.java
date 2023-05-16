@@ -48,7 +48,7 @@ public class ProgramRunner {
         for (int i = 0; i < fileNames.size(); i++) {
 
             try {
-                String filePath = "main\\resources\\" + fileNames.get(i);
+                String filePath = "src\\main\\resources\\" + fileNames.get(i);
                 File f = new File(filePath);
 
                 Scanner s = new Scanner(f);
