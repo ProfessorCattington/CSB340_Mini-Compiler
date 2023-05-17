@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserUtilities.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +164,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678159185811</updated>
-      <workItem from="1684133509663" duration="73022000" />
+      <workItem from="1684133509663" duration="75478000" />
     </task>
     <servers />
   </component>
