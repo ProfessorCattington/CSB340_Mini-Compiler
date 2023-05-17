@@ -1,3 +1,6 @@
+/** Lexer Class
+ * @author Michael */
+
 package Lexer;
 
 import java.util.Map;
@@ -41,6 +44,7 @@ public class Lexer {
         this.categories = LexerUtilities.buildCategoryMap();
     }
 
+    //getters for testing
     public int getLine(){return this.line;}
     public int getLinePos(){return this.linePos;}
     public int getCharPosition(){ return this.charPosition;}

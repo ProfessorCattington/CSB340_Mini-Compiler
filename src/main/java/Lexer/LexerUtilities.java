@@ -1,3 +1,6 @@
+/** Lexer utilities file
+ * @author Michael */
+
 package Lexer;
 
 import java.io.FileWriter;

@@ -1,3 +1,6 @@
+/** Lexer Driver
+ * @author Michael */
+
 package Lexer;
 
 import java.io.File;
