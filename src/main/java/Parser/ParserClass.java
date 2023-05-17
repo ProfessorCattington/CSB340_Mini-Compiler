@@ -203,6 +203,35 @@ public class ParserClass {
             }
         }
     }
+
+    // To simplify the parameters, this version is just for reading lex files from the lexer_output folder,
+    // and outputing par files to the parser_output folder. Param is file name without extension.
+    public static void runParserDefault(String name) {
+        if (1 == 1) {
+            try {
+                List<ParserToken> list = ParserUtilities.inputFromFileDefault(name);
+                ParserClass p = new ParserClass(list);
+                String result = "";
+                StringBuilder sb = new StringBuilder();
+                result = ParserUtilities.buildAST(p.parse(), sb);
+                ParserUtilities.printAST(result);
+                ParserUtilities.outputToFileDefault(result, name);
+            } catch (FileNotFoundException e) {
+                ParserUtilities.error(-1, -1, "Exception: " + e.getMessage());
+            } catch (Exception e) {
+                ParserUtilities.error(-1, -1, "Exception: " + e.getMessage());
+            }
+        } else {
+            ParserUtilities.error(-1, -1, "No args");
+        }
+    }
+
+    // A variation of the default parser (above) for parsing multiple files
+    public static void runParserDefault(ArrayList<String> names) {
+        for(String name: names) {
+            runParserDefault(name);
+        }
+    }
 }
 
 

@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/additional_input_files/grades.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/additional_input_files/grades.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/99bottles.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/99bottles.par" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/count.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/count.par" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/fizzbuzz.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/fizzbuzz.par" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/hello.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/hello.par" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/loop.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/loop.par" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/parser_output/prime.par" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/parser_output/prime.par" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Lexer/LexerJunitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Lexer/LexerJunitTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ParserUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ParserUtilities.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +74,7 @@
       <recent name="Parser" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ParserDriver">
+  <component name="RunManager" selected="JUnit.ParserJunitTests">
     <configuration name="LexerDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Lexer.LexerDriver" />
       <module name="MiniCompiler.main" />
@@ -154,8 +146,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LexerJunitTests" />
         <item itemvalue="JUnit.ParserJunitTests" />
+        <item itemvalue="JUnit.LexerJunitTests" />
         <item itemvalue="Application.LexerDriver" />
         <item itemvalue="Application.ProgramRunner" />
         <item itemvalue="Application.ParserDriver" />
@@ -170,7 +162,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678159185811</updated>
-      <workItem from="1684133509663" duration="70257000" />
+      <workItem from="1684133509663" duration="73022000" />
     </task>
     <servers />
   </component>
