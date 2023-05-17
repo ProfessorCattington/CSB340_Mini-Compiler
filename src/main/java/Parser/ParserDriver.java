@@ -7,7 +7,7 @@ import static Parser.ParserClass.*;
 
 public class ParserDriver {
     public static void main(String[] args) {
-        // running single instances
+        // running single instances (full file paths)
         runParser("src/main/resources/primary_verification_files/99bottles.lex",
                 "src/main/resources/parser_output/99bottles.par");
         runParser("src/main/resources/primary_verification_files/fizzbuzz.lex",
@@ -16,7 +16,7 @@ public class ParserDriver {
                 "src/main/resources/parser_output/prime.par");
 
 
-        // running multiple instances with example code
+        // running multiple instances with example code (full file paths)
         ArrayList<String> inputFilePaths = new ArrayList<>(Arrays.asList(
                 "src/main/resources/example_input_files/count.lex",
                 "src/main/resources/example_input_files/hello.lex",
@@ -27,18 +27,8 @@ public class ParserDriver {
                 "src/main/resources/parser_output/loop.par"));
         runParser(inputFilePaths, outputFilePaths);
 
-
-        runParser("src/main/resources/lexer_output/grades.lex",
-                "src/main/resources/parser_output/grades.par");
-
-        runParser("src/main/resources/lexer_output/utopiantree.lex",
-                "src/main/resources/parser_output/utopiantree.par");
-
-        runParser("src/main/resources/lexer_output/nfactorial.lex",
-                "src/main/resources/parser_output/nfactorial.par");
-
-        runParser("src/main/resources/lexer_output/sum.lex",
-                "src/main/resources/parser_output/sum.par");
+        // running multiple files with default location set (just provide names w/o extensions)
+        runParserDefault(new ArrayList<>(Arrays.asList("grades", "utopiantree", "nfactorial", "sum")));
     }
 }
 

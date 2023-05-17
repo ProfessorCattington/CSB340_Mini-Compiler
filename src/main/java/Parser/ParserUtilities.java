@@ -38,9 +38,9 @@ public class ParserUtilities {
         System.out.println(AST);
     }
 
-    public static void outputToFile(String result, String file) {
+    public static void outputToFile(String result, String filePath) {
         try {
-            FileWriter myWriter = new FileWriter(file);
+            FileWriter myWriter = new FileWriter(filePath);
             myWriter.write(result);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -49,15 +49,35 @@ public class ParserUtilities {
         }
     }
 
-    public static List<ParserToken> inputFromFile(String file) throws Exception {
+    public static void outputToFileDefault(String result, String fileName) {
+        String addExtension = fileName + ".par";
+        try {
+            FileWriter myWriter = new FileWriter("src/main/resources/parser_output/" + addExtension);
+            myWriter.write(result);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<ParserToken> inputFromFile(String filePath) throws Exception {
+        Scanner s = new Scanner(new File(filePath));
+        return buildList(s);
+    }
+
+    public static List<ParserToken> inputFromFileDefault(String fileName) throws Exception {
+        String addExtension = fileName + ".lex";
+        Scanner s = new Scanner(new File("src/main/resources/lexer_output/" + addExtension));
+        return buildList(s);
+    }
+
+    private static List<ParserToken> buildList(Scanner s) throws Exception {
         String value, token;
         int line, pos;
-        ParserToken t;
         boolean found;
         List<ParserToken> list = new ArrayList<>();
         Map<String, ParserTokenType> str_to_tokens = ParserTokenType.createTokenMap();
-        Scanner s = new Scanner(new File(file));
-        String source = "";
         while (s.hasNext()) {
             String str = s.nextLine();
             StringTokenizer st = new StringTokenizer(str);
