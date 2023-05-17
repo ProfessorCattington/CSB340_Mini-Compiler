@@ -1,3 +1,6 @@
+/** Lexer Token sub class
+ * @author Michael */
+
 package Lexer;
 
 public class LexerToken extends Token {

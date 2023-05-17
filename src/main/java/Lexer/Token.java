@@ -1,3 +1,6 @@
+/** Token Base Class
+ * @author Michael */
+
 package Lexer;
 
 public class Token {

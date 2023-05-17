@@ -1,3 +1,6 @@
+/** Lexer Tests
+ * @author Michael */
+
 package Lexer;
 
 import org.junit.jupiter.api.*;
